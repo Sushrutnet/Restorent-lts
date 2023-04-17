@@ -54,7 +54,7 @@ const Header = () => {
         
             <Navbar className='Header' bg='dark' variant="dark"  sticky="top" style={{ height: "60px" }}>
                 <Container>
-                    <NavLink to="/" className="text-decoration-none text-light mx-3 "  >Add to Cart</NavLink>
+                    <NavLink to="/" className="text-decoration-none text-light mx-3 "  >Night & kings</NavLink>
                     <Nav className="me-auto">
                         <NavLink to="/" className="text-decoration-none text-light">Home</NavLink>
                     </Nav>
