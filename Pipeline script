@@ -1,0 +1,26 @@
+pipeline {
+    agent {label 'dev-agent'}
+    
+    stages {
+        stage('Code'){
+            steps {
+                git url: 'https://github.com/Sushrutnet/Restorent-lts.git', branch: 'master'
+            }
+        }
+        stage('Building'){
+            steps {
+                sh 'docker build . -t sushrutnet/restorent-app:latest'
+            }
+        }
+        stage('Login & Pushing'){
+            steps {
+                echo "Login & Pushing..."
+                withCredentials([usernamePassword(credentialsId:'dockerHub',passwordVariable:'dockerHubPassword',usernameVariable:'dockerHubUser')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                    sh "docker push sushrutnet/restorent-app:latest"
+                }
+            }
+        }
+        
+    }
+} 
